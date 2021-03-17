@@ -96,17 +96,27 @@ public class VCFrame implements ActionListener {
         //JOB ACCEPTED VIEW
         jobAccepted.setLayout(new FlowLayout());
         jobAccepted.add(congrats);
+        
+        //NEW ENTRY BUTTON
+        newEntry.addActionListener(e -> {
+        	//EVERYTIME THE NEW ENTRY BUTTON IS PRESSED THEN GO BACK TO THE USER FRAME
+        	System.out.println("button pressed");
+        	new UserFrame();
+        });
+        jobAccepted.add(newEntry);
+        
+        //ASSIGN BUTTON
         assign.addActionListener(e -> {
-        	Queue<Integer> job = new LinkedList<>();
-        	Queue<Integer> v = new LinkedList<>();
+        	Queue<Integer> job = new LinkedList<>(); // QUEUE FOR JOBS
+        	Queue<Integer> v = new LinkedList<>(); // QUEUE FOR VEHICLES
         	job.add(1);
         	job.add(32);
         	job.add(6);
         	job.add(8);
         	job.add(5);	
         	
-        	if(oF.getOwnerID() != 0 && oF.getOwnerID()!= 0 &&oF.getResidency() != 0) {
-        		((LinkedList<Integer>) v).push(oF.getOwnerID());
+        	if(oF.getOwnerID() != 0 && oF.getLicensePlate()!= null && oF.getResidency() != 0) {
+        		((LinkedList<Integer>) v).push(Integer.parseInt(oF.getLicensePlate()));//PUSH THE VEHICLE ONTO THE VEHICLE QUEUE
         		System.out.println(v);
         	}
         	
@@ -118,12 +128,6 @@ public class VCFrame implements ActionListener {
         	
         });
         jobAccepted.add(assign);
-        newEntry.addActionListener(e -> {
-        	System.out.println("button pressed");
-        	new UserFrame();
-        });
-        jobAccepted.add(newEntry);
-        
         jobAccepted.add(ok);
         ok.addActionListener(e -> {
         	   jobAccepted.dispose();  
