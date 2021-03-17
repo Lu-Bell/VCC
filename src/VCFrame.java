@@ -27,6 +27,7 @@ public class VCFrame implements ActionListener {
     JButton accept = new JButton("Accept");
     JButton reject = new JButton("Reject");
     JButton newEntry = new JButton("New Entry");
+    JButton assign = new JButton("Assign");
     JButton ok = new JButton("OK");
     JButton waitTime = new JButton("Calculate Wait Time");
     JLabel currentWait = new JLabel("Current WaitTime: ");
@@ -91,14 +92,38 @@ public class VCFrame implements ActionListener {
         controllerView.setSize(500, 500);
         controllerView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controllerView.setVisible(true);
-
+        
+        //JOB ACCEPTED VIEW
         jobAccepted.setLayout(new FlowLayout());
         jobAccepted.add(congrats);
+        assign.addActionListener(e -> {
+        	Queue<Integer> job = new LinkedList<>();
+        	Queue<Integer> v = new LinkedList<>();
+        	job.add(1);
+        	job.add(32);
+        	job.add(6);
+        	job.add(8);
+        	job.add(5);	
+        	
+        	if(oF.getOwnerID() != 0 && oF.getOwnerID()!= 0 &&oF.getResidency() != 0) {
+        		((LinkedList<Integer>) v).push(oF.getOwnerID());
+        		System.out.println(v);
+        	}
+        	
+        	System.out.println("Job "+job.peek()+" has been assigned to vehicle "+v.peek());
+        	job.remove();
+        	v.remove();
+        	System.out.println("The Next Job is "+job.peek());
+        	
+        	
+        });
+        jobAccepted.add(assign);
         newEntry.addActionListener(e -> {
         	System.out.println("button pressed");
         	new UserFrame();
         });
         jobAccepted.add(newEntry);
+        
         jobAccepted.add(ok);
         ok.addActionListener(e -> {
         	   jobAccepted.dispose();  
